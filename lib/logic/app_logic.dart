@@ -36,7 +36,7 @@ class AppLogic {
     debugPrint('bootstrap start...');
     // Set min-sizes for desktop apps
     if (PlatformInfo.isDesktop) {
-      await DesktopWindow.setMinWindowSize($styles.sizes.minAppSize);
+      // await DesktopWindow.setMinWindowSize($styles.sizes.minAppSize);
     }
 
     if (kIsWeb) {
@@ -94,13 +94,14 @@ class AppLogic {
   /// Called from the UI layer once a MediaQuery has been obtained
   void handleAppSizeChanged(Size appSize) {
     /// Disable landscape layout on smaller form factors
-    bool isSmall = display.size.shortestSide / display.devicePixelRatio < 600;
+    bool isSmall = false;
+    //display.size.shortestSide / display.devicePixelRatio < 600;
     supportedOrientations = isSmall ? [Axis.vertical] : [Axis.vertical, Axis.horizontal];
     _updateSystemOrientation();
     _appSize = appSize;
   }
 
-  Display get display => PlatformDispatcher.instance.displays.first;
+  //Display get display => PlatformDispatcher.instance.displays.first;
 
   bool shouldUseNavRail() => _appSize.width > _appSize.height && _appSize.height > 250;
 
