@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   void _showDetailsPage() async {
     _swipeOverride = _swipeController.swipeAmt.value;
     context.go(ScreenPaths.wonderDetails(currentWonder.type, tabIndex: 0));
-    await Future.delayed(100.ms);
+    await Future.delayed(50.ms);
     _swipeOverride = null;
     _fadeInOnNextBuild = true;
   }
@@ -143,6 +143,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         listenToMouseWheel: false,
         onPreviousPressed: () => _handlePrevNext(-1),
         onNextPressed: () => _handlePrevNext(1),
+        onDownPressed: () => _showDetailsPage(),
         child: Stack(
           children: [
             /// Background
@@ -351,18 +352,18 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       ),
 
       /// Menu Btn
-      TopLeft(
-        child: AnimatedOpacity(
-          duration: $styles.times.fast,
-          opacity: _isMenuOpen ? 0 : 1,
-          child: AppHeader(
-            backIcon: AppIcons.menu,
-            backBtnSemantics: $strings.homeSemanticOpenMain,
-            onBack: _handleOpenMenuPressed,
-            isTransparent: true,
-          ),
-        ),
-      ),
+      // TopLeft(
+      //   child: AnimatedOpacity(
+      //     duration: $styles.times.fast,
+      //     opacity: _isMenuOpen ? 0 : 1,
+      //     child: AppHeader(
+      //       backIcon: AppIcons.menu,
+      //       backBtnSemantics: $strings.homeSemanticOpenMain,
+      //       onBack: _handleOpenMenuPressed,
+      //       isTransparent: true,
+      //     ),
+      //   ),
+      // ),
     ]);
   }
 }

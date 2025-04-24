@@ -36,27 +36,27 @@ class AppLogic {
     debugPrint('bootstrap start...');
     // Set min-sizes for desktop apps
     // TODO: Test on Linux and confirm whether it's safe to call there, according to issue #183 its not.
-    if (!kIsWeb && (PlatformInfo.isWindows || PlatformInfo.isMacOS)) {
-      await DesktopWindow.setMinWindowSize($styles.sizes.minAppSize);
-    }
+    // if (!kIsWeb && (PlatformInfo.isWindows || PlatformInfo.isMacOS)) {
+    //   await DesktopWindow.setMinWindowSize($styles.sizes.minAppSize);
+    // }
 
-    if (kIsWeb) {
-      // SB: This is intentionally not a debugPrint, as it's a message for users who open the console on web.
-      print(
-        '''Thanks for checking out Wonderous on the web!
-        If you encounter any issues please report them at https://github.com/gskinnerTeam/flutter-wonderous-app/issues.''',
-      );
-      // Required on web to automatically enable accessibility features
-      WidgetsFlutterBinding.ensureInitialized().ensureSemantics();
-    }
+    // if (kIsWeb) {
+    //   // SB: This is intentionally not a debugPrint, as it's a message for users who open the console on web.
+    //   print(
+    //     '''Thanks for checking out Wonderous on the web!
+    //     If you encounter any issues please report them at https://github.com/gskinnerTeam/flutter-wonderous-app/issues.''',
+    //   );
+    //   // Required on web to automatically enable accessibility features
+    //   WidgetsFlutterBinding.ensureInitialized().ensureSemantics();
+    // }
 
     // Load any bitmaps the views might need
     await AppBitmaps.init();
 
     // Set preferred refresh rate to the max possible (the OS may ignore this)
-    if (!kIsWeb && PlatformInfo.isAndroid) {
-      await FlutterDisplayMode.setHighRefreshRate();
-    }
+    // if (!kIsWeb && PlatformInfo.isAndroid) {
+    //   await FlutterDisplayMode.setHighRefreshRate();
+    // }
 
     // Settings
     await settingsLogic.load();
@@ -81,7 +81,7 @@ class AppLogic {
     isBootstrapComplete = true;
 
     // Load initial view (replace empty initial view which is covered by a native splash screen)
-    bool showIntro = settingsLogic.hasCompletedOnboarding.value == false;
+    bool showIntro = true; //settingsLogic.hasCompletedOnboarding.value == false;
     if (showIntro) {
       appRouter.go(ScreenPaths.intro);
     } else {
@@ -98,7 +98,7 @@ class AppLogic {
   /// Called from the UI layer once a MediaQuery has been obtained
   void handleAppSizeChanged(Size appSize) {
     /// Disable landscape layout on smaller form factors
-    bool isSmall = display.size.shortestSide / display.devicePixelRatio < 600;
+    bool isSmall = false; //display.size.shortestSide / display.devicePixelRatio < 600;
     supportedOrientations = isSmall ? [Axis.vertical] : [Axis.vertical, Axis.horizontal];
     _updateSystemOrientation();
     _appSize = appSize;
@@ -129,7 +129,7 @@ class AppLogic {
 
   void precacheWonderImages(BuildContext context) {
     debugPrint('Skipping precache, need to figure out why it\'s not working on web.');
-    return;
+    // return;
     precacheImage(AssetImage('images/chichen_itza/chichen.png'), context);
     precacheImage(AssetImage('images/chichen_itza/foreground-left.png'), context);
     precacheImage(AssetImage('images/chichen_itza/foreground-right.png'), context);

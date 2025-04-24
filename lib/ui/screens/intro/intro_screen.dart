@@ -97,6 +97,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   _incrementPage(1);
                 }
               },
+              onDownPressed: () {},
               child: Stack(
                 children: [
                   // page view with title & description:

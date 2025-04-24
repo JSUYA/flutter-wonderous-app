@@ -78,9 +78,10 @@ class _WonderDetailsScreenState extends State<WonderDetailsScreen>
             index: _tabController.index,
             children: [
               WonderEditorialScreen(wonder, contentPadding: menuPadding),
-              PhotoGallery(collectionId: wonder.unsplashCollectionId, wonderType: wonder.type),
-              ArtifactCarouselScreen(type: wonder.type, contentPadding: menuPadding),
-              WonderEvents(type: widget.type, contentPadding: menuPadding),
+              PhotoGallery(
+                  collectionId: wonder.unsplashCollectionId, wonderType: wonder.type, imageSize: const Size(300, 300)),
+              // ArtifactCarouselScreen(type: wonder.type, contentPadding: menuPadding),
+              // WonderEvents(type: widget.type, contentPadding: menuPadding),
             ],
           ),
 

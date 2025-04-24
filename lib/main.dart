@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'src/generated/i18n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:wonders/common_libs.dart';
@@ -14,11 +14,11 @@ import 'package:wonders/logic/wonders_logic.dart';
 import 'package:wonders/ui/common/app_shortcuts.dart';
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // Keep native splash screen up until app is finished bootstrapping
-  if (!kIsWeb) {
-    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  }
+  // if (!kIsWeb) {
+  //   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // }
   GoRouter.optionURLReflectsImperativeAPIs = true;
 
   // Start app
@@ -42,9 +42,9 @@ class WondersApp extends StatefulWidget with GetItStatefulWidgetMixin {
 class _WondersAppState extends State<WondersApp> with GetItStateMixin {
   @override
   void initState() {
-    if (kIsWeb) {
-      appLogic.precacheWonderImages(context);
-    }
+    // if (kIsWeb) {
+    // appLogic.precacheWonderImages(context);
+    // }
     super.initState();
   }
 

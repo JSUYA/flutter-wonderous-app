@@ -9,6 +9,7 @@ class PreviousNextNavigation extends StatefulWidget {
       {super.key,
       required this.onPreviousPressed,
       required this.onNextPressed,
+      required this.onDownPressed,
       required this.child,
       this.maxWidth = 1000,
       this.nextBtnColor,
@@ -16,6 +17,7 @@ class PreviousNextNavigation extends StatefulWidget {
       this.listenToMouseWheel = true});
   final VoidCallback? onPreviousPressed;
   final VoidCallback? onNextPressed;
+  final VoidCallback? onDownPressed;
   final Color? nextBtnColor;
   final Color? previousBtnColor;
   final Widget child;
@@ -31,12 +33,19 @@ class _PreviousNextNavigationState extends State<PreviousNextNavigation> {
   final int _scrollCooldownMs = 300;
 
   bool _handleKeyDown(KeyDownEvent event) {
+    print(event.logicalKey);
     if (event.logicalKey == LogicalKeyboardKey.arrowLeft && widget.onPreviousPressed != null) {
       widget.onPreviousPressed?.call();
       return true;
     }
     if (event.logicalKey == LogicalKeyboardKey.arrowRight && widget.onNextPressed != null) {
       widget.onNextPressed?.call();
+      return true;
+    }
+
+    if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
+      print('LogicalKeyboardKey.arrowDown');
+      widget.onDownPressed?.call();
       return true;
     }
     return false;

@@ -161,7 +161,7 @@ String? _handleRedirect(BuildContext context, GoRouterState state) {
     debugPrint('Redirecting from ${state.uri.path} to ${ScreenPaths.home}');
     return ScreenPaths.home;
   }
-  if (!kIsWeb) debugPrint('Navigate to: ${state.uri}');
+  // if (!kIsWeb) debugPrint('Navigate to: ${state.uri}');
   return null; // do nothing
 }
 
